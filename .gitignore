@@ -1,0 +1,6 @@
+__pycache__
+data/*
+!data/sentences_with_audio.csv
+!data/nld_sentences.tsv
+!data/Sentence pairs in Dutch-English - 2024-01-14.tsv
+!data/anki.csv
