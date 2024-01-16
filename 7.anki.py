@@ -2,11 +2,11 @@ import os
 from pickle import load
 import random
 import genanki
-from utils import check_audio
+from my_utils import check_audio
 
 from words import WordData
 
-from paths import word_path, audio_dir
+from paths import word_data_path, audio_dir, sentence_audio_dir, output_deck_path
 
 disable_autoplay = '''
 <script>
@@ -80,7 +80,7 @@ model = genanki.Model(
     }]
 )
 
-with open(word_path, 'rb') as f:
+with open(word_data_path, 'rb') as f:
 
     root_deck_name = "A Frequency Dictionary of Dutch with Spoken Sentences"
 
@@ -95,5 +95,5 @@ with open(word_path, 'rb') as f:
         decks[word.subdeck].add_note(generate_note(word))
 
     package = genanki.Package(decks.values())
-    package.media_files = [f"data/audio_wikidict/{word.word}.ogg" for word in all_words if check_audio(os.path.join(audio_dir, f"{word.word}.ogg"))] + [f"data/audio/{audio}.mp3" for word in all_words for audio in word.sentences_audio]
-    package.write_to_file('data/output.apkg')
+    package.media_files = [f"{audio_dir}/{word.word}.ogg" for word in all_words if check_audio(os.path.join(audio_dir, f"{word.word}.ogg"))] + [f"{sentence_audio_dir}/{audio}.mp3" for word in all_words for audio in word.sentences_audio]
+    package.write_to_file(output_deck_path)

@@ -27,6 +27,6 @@ if __name__ == "__main__":
             all_data.append([sentence_id, audio_id])
 
 
-    with open(output_path, "w", newline='') as f:
+    with open(sentence_mapping_path, "w", newline='') as f:
         writer = csv.writer(f)
         writer.writerows(all_data)

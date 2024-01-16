@@ -1,3 +1,4 @@
+# Renamed from utils.py for collision with wiktionaryparser
 import os
 
 
